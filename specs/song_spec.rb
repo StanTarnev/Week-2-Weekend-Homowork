@@ -10,6 +10,8 @@ class TestSong < MiniTest::Test
     @song1 = Song.new("Jesus Built My Hotrod")
     @song2 = Song.new("O Fortuna")
     @song3 = Song.new("Jump Around")
+
+    @songs = [@song1, @song2, @song3]
   end
 
   def test_name()

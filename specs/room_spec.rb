@@ -7,15 +7,17 @@ require_relative("../Song.rb")
 class TestRoom < MiniTest::Test
 
   def setup()
-    @room = Room.new("Karaoke", [], 50, [])
+    @room = Room.new("Karaoke", 4, [], 30, [])
 
     @song1 = Song.new("Jesus Built My Hotrod")
     @song2 = Song.new("O Fortuna")
     @song3 = Song.new("Jump Around")
 
-    @guest1 = Guest.new("Jimmy", 40)
-    @guest2 = Guest.new("Akira", 60)
-    @guest3 = Guest.new("Francisco", 80)
+    @songs = [@song1, @song2, @song3]
+
+    @guest1 = Guest.new("Jimmy", 40, "It's a kind of magic")
+    @guest2 = Guest.new("Akira", 60, "A Holiday in Cambodia")
+    @guest3 = Guest.new("Francisco", 80, "O Fortuna")
 
     @guests = [@guest1, @guest2, @guest3]
   end
@@ -24,12 +26,16 @@ class TestRoom < MiniTest::Test
     assert_equal("Karaoke", @room.name())
   end
 
+  def test_size()
+    assert_equal(4, @room.size())
+  end
+
   def test_room_songs()
     assert_equal([], @room.room_songs())
   end
 
   def test_entry_fee()
-    assert_equal(50, @room.entry_fee())
+    assert_equal(30, @room.entry_fee())
   end
 
   def test_room_guests()
@@ -54,6 +60,7 @@ class TestRoom < MiniTest::Test
     assert_equal(1, @room.guest_count())
     # added_guests = @room.check_in_guests(@guest3)
     # assert_equal(added_guests, @room.room_guests())
+    # assert_equal(30, @guest3.money())
   end
 
   def test_check_out_guests()
@@ -66,5 +73,22 @@ class TestRoom < MiniTest::Test
     # assert_equal(remaining_guests, @room.room_guests())
     assert_equal(2, @room.guest_count)
   end
+
+  # def test_check_guest_has_enough_money()
+  #   assert_equal(true, @room.check_guest_has_enough_money(@guest3))
+  # end
+
+  # def test_charge_guest()
+  #   assert_equal(30, @guest3.money())
+  # end
+
+  # def test_favourite_song_available()
+  #   @room.add_song(@song1)
+  #   @room.add_song(@song2)
+  #   @room.add_song(@song3)
+  #   assert_equal("Whoo!", @room.favourite_song_available(@guest3))
+  # end
+
+
 
 end
