@@ -1,5 +1,6 @@
 require("minitest/autorun")
 require("minitest/rg")
+require("pry")
 require_relative("../Guest.rb")
 require_relative("../Room.rb")
 require_relative("../Song.rb")
@@ -7,7 +8,7 @@ require_relative("../Song.rb")
 class TestRoom < MiniTest::Test
 
   def setup()
-    @room = Room.new("Karaoke", 4, [], 30, [])
+    @room = Room.new("Karaoke", 4, 30)
 
     @song1 = Song.new("Jesus Built My Hotrod")
     @song2 = Song.new("O Fortuna")
@@ -43,10 +44,11 @@ class TestRoom < MiniTest::Test
   end
 
   def test_add_song()
-    # @room.add_song(@song3)
-    # assert_equal(["Jump Around"], @room.room_songs())
-    added_song = @room.add_song(@song3)
-    assert_equal(added_song, @room.room_songs())
+    @room.add_song(@song3)
+    # binding.pry
+    assert_equal([@song3], @room.room_songs())
+    # added_song = @room.add_song(@song3)
+    # assert_equal(added_song, @room.room_songs())
   end
 
   def test_guest_count()
@@ -82,12 +84,12 @@ class TestRoom < MiniTest::Test
   #   assert_equal(30, @guest3.money())
   # end
 
-  # def test_favourite_song_available()
-  #   @room.add_song(@song1)
-  #   @room.add_song(@song2)
-  #   @room.add_song(@song3)
-  #   assert_equal("Whoo!", @room.favourite_song_available(@guest3))
-  # end
+  def test_favourite_song_available()
+    @room.add_song(@song1)
+    @room.add_song(@song2)
+    @room.add_song(@song3)
+    assert_equal("Whoo!", @room.favourite_song_available(@guest3))
+  end
 
 
 
