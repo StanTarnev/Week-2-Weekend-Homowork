@@ -76,9 +76,9 @@ class TestRoom < MiniTest::Test
     assert_equal(2, @room.guest_count)
   end
 
-  # def test_check_guest_has_enough_money()
-  #   assert_equal(true, @room.check_guest_has_enough_money(@guest3))
-  # end
+  def test_check_guest_has_enough_money()
+    assert_equal(true, @room.check_guest_has_enough_money(@guest3))
+  end
 
   # def test_charge_guest()
   #   assert_equal(30, @guest3.money())
