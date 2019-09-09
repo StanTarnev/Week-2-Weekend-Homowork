@@ -41,6 +41,12 @@ class Room
     @room_guests.delete(guest)
   end
 
-
+# def favourite_song_available(guest)
+#   for song in room_songs
+#     if song == guest.favourite_song()
+#       return "Whoo!"
+#     end
+#   end
+# end
 
 end
